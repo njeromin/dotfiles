@@ -52,24 +52,24 @@ function asdfInstall {
       return
    fi
    
-   asdf plugin add $@ | sed '/already added/d'
-   asdf install $1 latest | sed '/is already installed/d'
-   asdf global $1 latest
+   asdf plugin add $2 $3 | sed '/already added/d'
+   asdf install $2 latest | sed '/is already installed/d'
+   asdf global $2 latest
 }
 
 # auto installers
-asdfInstall "chezmoi" "https://github.com/joke/asdf-chezmoi.git"
-asdfInstall "fzf" "https://github.com/kompiro/asdf-fzf.git"
-asdfInstall "ripgrep"
-asdfInstall "exa"
-asdfInstall "neovim"
+asdfInstall "chezmoi" "chezmoi" "https://github.com/joke/asdf-chezmoi.git"
+asdfInstall "fzf" "fzf" "https://github.com/kompiro/asdf-fzf.git"
+asdfInstall "rg" "ripgrep"
+asdfInstall "exa" "exa"
+asdfInstall "nvim" "neovim"
 
-if $INSTALL_TOOL_TASK; then; asdfInstall "task" "https://github.com/particledecay/asdf-task.git"; fi
-if $INSTALL_TOOL_AWS_CLI; then; asdfInstall "awscli"; fi
+if $INSTALL_TOOL_TASK; then; asdfInstall "task" "task" "https://github.com/particledecay/asdf-task.git"; fi
+if $INSTALL_TOOL_AWS_CLI; then; asdfInstall "aws" "awscli"; fi
 
-if $INSTALL_LANG_RUST; then; asdfInstall "rust"; fi
-if $INSTALL_LANG_GOLANG; then; asdfInstall "golang"; fi
-if $INSTALL_LANG_PYTHON; then; asdfInstall "python"; fi
-if $INSTALL_LANG_NODE; then; asdfInstall "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"; fi
-if $INSTALL_LANG_BUN; then; asdfInstall "bun"; fi
+if $INSTALL_LANG_RUST; then; asdfInstall "cargo" "rust"; fi
+if $INSTALL_LANG_GOLANG; then; asdfInstall "go" "golang"; fi
+if $INSTALL_LANG_PYTHON; then; asdfInstall "python" "python"; fi
+if $INSTALL_LANG_NODE; then; asdfInstall "node" "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"; fi
+if $INSTALL_LANG_BUN; then; asdfInstall "bun" "bun"; fi
 
